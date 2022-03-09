@@ -33,16 +33,7 @@ export default function login() {
 	// render() {
 	return (
 		<div>
-			<header className='text-gray-600 body-font'>
-				<div className='container mx-auto  flex-wrap p-5 flex-col md:flex-row items-center hidden md:flex'>
-					<Link href='/'>
-						<img
-							src='/Transcend.png'
-							className='h-11 sm:h-12 md:h-14 lg:h-16 xl:h-14  rounded-md mx-2 cursor-pointer'
-						/>
-					</Link>
-				</div>
-			</header>
+			<header className='text-gray-600 body-font'></header>
 			<section className='text-gray-600 body-font'>
 				<div className='container px-5 py-24 mx-auto flex flex-wrap items-center'>
 					<div className='lg:w-3/5  md:pr-16 lg:pr-0 pr-0   mb-10  pb-2 border-b mx-auto md:text-center lg:text-left lg:border-r lg:border-b-0'>
