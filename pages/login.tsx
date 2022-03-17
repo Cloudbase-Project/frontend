@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 // import axios from '../axios-config';
 
-export default function login() {
+export default function Login() {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	if (status == 'authenticated') {

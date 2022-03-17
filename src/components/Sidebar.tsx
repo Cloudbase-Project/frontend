@@ -31,9 +31,9 @@ export default function Sidebar(props) {
 									stroke='white'
 									aria-hidden='true'>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M6 18L18 6M6 6l12 12'
 									/>
 								</svg>
@@ -52,9 +52,9 @@ export default function Sidebar(props) {
 											viewBox='0 0 24 24'
 											xmlns='http://www.w3.org/2000/svg'>
 											<path
-												stroke-linecap='round'
-												stroke-linejoin='round'
-												stroke-width='2'
+												strokeLinecap='round'
+												strokeLinejoin='round'
+												strokeWidth='2'
 												d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'></path>
 										</svg>
 										MY ACCOUNT
@@ -70,9 +70,9 @@ export default function Sidebar(props) {
 									viewBox='0 0 24 24'
 									stroke='currentColor'>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
 									/>
 								</svg>
@@ -87,9 +87,9 @@ export default function Sidebar(props) {
 									viewBox='0 0 24 24'
 									stroke='currentColor'>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z'
 									/>
 								</svg>
@@ -104,9 +104,9 @@ export default function Sidebar(props) {
 									viewBox='0 0 24 24'
 									stroke='currentColor'>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
 									/>
 								</svg>
@@ -121,9 +121,9 @@ export default function Sidebar(props) {
 									viewBox='0 0 24 24'
 									stroke='currentColor'>
 									<path
-										stroke-linecap='round'
-										stroke-linejoin='round'
-										stroke-width='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth='2'
 										d='M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
 									/>
 								</svg>
