@@ -1,5 +1,6 @@
 import Layout from '../src/components/Layout';
 import '../styles/globals.css';
+import '../styles/edit.css';
 
 import { SessionProvider } from 'next-auth/react';
 

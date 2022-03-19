@@ -65,6 +65,13 @@ export default function Navbar(props) {
 							</span>
 						</span>
 					</Link>
+					<Link href='/projects'>
+						<span className='inline-flex cursor-pointer mr-5  xl:px-4 lg:pr-0 py-2'>
+							<span className='nav hover:text-brand-green'>
+								Projects
+							</span>
+						</span>
+					</Link>
 				</nav>
 				{props.sessionStatus !== 'authenticated' ? (
 					<Link href='/login'>
