@@ -2,3 +2,11 @@ input:checked ~ .dot {
 	transform: translateX(100%);
 	background-color: #48bb78;
 }
+
+.overflow-guard {
+	border-radius: 15px;
+}
+
+div.monaco-editor[role='code'] {
+	border-radius: 15px;
+}
