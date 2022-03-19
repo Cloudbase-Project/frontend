@@ -20,3 +20,14 @@ spec:
                             name: frontend-svc
                             port:
                                 number: 3000
+        - host: backend.cloudbase.dev
+          http:
+              paths:
+                  - pathType: Prefix
+                    path: /main/?(.*)
+                    # path: /
+                    backend:
+                        service:
+                            name: cloudbase-main-svc
+                            port:
+                                number: 4000
