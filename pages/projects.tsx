@@ -13,6 +13,9 @@ export default function projects() {
 		{ id: 'Asd1', name: 'first project' },
 		{ id: 'Asd2', name: 'second project' },
 		{ id: 'Asd3', name: 'other  project' },
+		{ id: 'Asd3', name: 'other  project' },
+		{ id: 'Asd3', name: 'other  project' },
+		{ id: 'Asd3', name: 'other  project' },
 	]);
 
 	return (
@@ -22,9 +25,9 @@ export default function projects() {
 					Projects
 				</h1>
 			</div>
-			<div>
+			<div className=' mx-64'>
 				{projects.length >= 0 && (
-					<div>
+					<div className='mt-10  '>
 						{projects.map((project) => (
 							<ProjectItem name={project.name} id={project.id} />
 						))}

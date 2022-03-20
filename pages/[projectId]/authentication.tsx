@@ -30,7 +30,7 @@ export default function authentication() {
 					</div>
 					<div className='flex justify-center'>
 						<code className=' my-4  text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/auth/login
+							http://my-project-1293812300219.cloudbase.dev/auth/register
 						</code>
 					</div>
 					<div className='text-base text-slate-600 m-2 '>Login</div>
