@@ -84,6 +84,7 @@ export default function Logs() {
 									top: 25,
 									bottom: 10,
 								},
+								readOnly: true,
 							}}
 						/>
 					</div>

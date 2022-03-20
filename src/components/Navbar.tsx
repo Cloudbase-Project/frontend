@@ -22,7 +22,7 @@ export default function Navbar(props) {
 				<div>
 					<Link href='/'>
 						<img
-							src='/Transcend.png'
+							src='/cloudbaselogo.png'
 							className='h-11 sm:h-12 md:h-14 lg:h-12 xl:h-14  rounded-md mx-2  cursor-pointer'
 						/>
 					</Link>

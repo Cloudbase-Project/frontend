@@ -12,7 +12,8 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				'brand-green': '#278575',
+				// 'brand-green': '#278575',
+				'brand-green': '#1378ae',
 				'brand-green-hover': '#207365',
 				// "brand-blue": "#091f77",
 				'brand-orange': '#FB5410',

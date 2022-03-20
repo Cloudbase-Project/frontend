@@ -8,7 +8,7 @@ export default function Home() {
 					<img
 						className='object-cover object-center rounded-lg'
 						alt='hero'
-						src='/hero2.jpg'
+						src='/main-banner.jpg'
 					/>
 				</div>
 
@@ -41,7 +41,7 @@ export default function Home() {
 					<img
 						className='object-cover object-center rounded-lg hidden md:block'
 						alt='hero'
-						src='/hero2.jpg'
+						src='/main-banner.jpg'
 					/>
 				</div>
 			</div>
