@@ -36,17 +36,20 @@ export default function Login() {
 			<header className='text-gray-600 body-font'></header>
 			<section className='text-gray-600 body-font'>
 				<div className='container px-5 py-24 mx-auto flex flex-wrap items-center'>
-					<div className='lg:w-3/5  md:pr-16 lg:pr-0 pr-0   mb-10  pb-2 border-b mx-auto md:text-center lg:text-left lg:border-r lg:border-b-0'>
+					<div className='lg:w-3/5  md:pr-16 lg:pr-0 pr-0   mb-10  pb-2 border-b mx-auto md:text-center lg:text-left lg:border-r lg:border-b-0  '>
 						<h1 className='title-font font-medium text-3xl text-gray-900 hidden md:block'>
-							Lorem Ipsum
+							CloudBase
 						</h1>
 						<img src='/Transcend.png' className='md:hidden h-20' />
 						<p className='leading-relaxed mt-4 hidden md:block'>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Ipsum, esse. Ad aliquid magni suscipit quia
-							dolor ex sunt natus, assumenda repellendus incidunt
-							amet, aut praesentium nesciunt error earum pariatur
-							iste.
+							Cloudbase is a Backend as a Service application
+							suite aimed at improving developer productivity and
+							reducing technical debt. We provide all the tools
+							necessary for 360 degree application development.Out
+							of the box solutions to common problems faced by a
+							typical developer therefore reducing the man hours
+							spent on menial tasks and spending more on
+							developing the core product.
 						</p>
 						<br />
 						<img
@@ -54,7 +57,7 @@ export default function Login() {
 							className='h-30 w-60 absolute -z-20  hidden lg:block '
 						/>
 					</div>
-					<div className='lg:w-2/6 md:w-9/12 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-2 md:mt-0 md:mx-auto shadow-xl shadow-gray-500'>
+					<div className=' lg:w-2/6 md:w-9/12 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-2  md:mx-auto shadow-xl shadow-gray-500 mt-32'>
 						<h2 className='text-gray-900 text-xl font-bold title-font mb-5 mx-auto'>
 							Login
 						</h2>

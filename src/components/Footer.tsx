@@ -208,7 +208,7 @@ export class Footer extends Component {
 			// 	</div>
 			// </footer>
 
-			<footer className='text-gray-600 body-font'>
+			<footer className='text-gray-600 body-font mt-28 '>
 				<div className='container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col'>
 					<a className='flex title-font font-medium items-center md:justify-start justify-center text-gray-900'>
 						<svg
@@ -231,7 +231,7 @@ export class Footer extends Component {
 							className='text-gray-600 ml-1'
 							rel='noopener noreferrer'
 							target='_blank'>
-							@Navaneeth
+							@Cloudbase
 						</a>
 					</p>
 					<span className='inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start'>

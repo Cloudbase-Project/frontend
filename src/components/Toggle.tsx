@@ -11,12 +11,13 @@ export default function Toggle(props: Props) {
 
 	return (
 		// <div className='flex items-center justify-center w-full mb-12'>
-		<div className='flex justify-center'>
+		<div className='flex justify-center  '>
 			<div className='flex justify-between w-full'>
 				<div className='flex w-full items-center justify-between mt-8 mb-4'>
 					<Link href={props.link}>
 						<span
 							className={`ml-3 cursor-pointer text-gray-700 font-bold mx-2 text-2xl ${
+								// enabled && 'text-brand-green'
 								enabled && 'text-green-600'
 							} `}>
 							{props.name}
