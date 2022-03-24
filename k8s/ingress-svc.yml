@@ -31,3 +31,19 @@ spec:
                             name: cloudbase-main-svc
                             port:
                                 number: 4000
+                  - pathType: Prefix
+                    path: /auth/?(.*)
+                    # path: /
+                    backend:
+                        service:
+                            name: cloudbase-authentication-svc
+                            port:
+                                number: 4000
+                  - pathType: Prefix
+                    path: /email/?(.*)
+                    # path: /
+                    backend:
+                        service:
+                            name: cloudbase-email-service-svc
+                            port:
+                                number: 4000
