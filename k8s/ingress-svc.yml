@@ -47,3 +47,11 @@ spec:
                             name: cloudbase-email-service-svc
                             port:
                                 number: 4000
+                  - pathType: Prefix
+                    path: /serverless/?(.*)
+                    # path: /
+                    backend:
+                        service:
+                            name: cloudbase-serverless-svc
+                            port:
+                                number: 4000
