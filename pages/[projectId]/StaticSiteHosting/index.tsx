@@ -2,15 +2,19 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export default function StaticSiteHosting() {
 	const session = useSession();
 
 	const [sites, setSites] = useState([]);
 
+	const router = useRouter();
+	const { projectId } = router.query;
+
 	const createNewSiteHandler = async () => {
 		const resp = await axios.post(
-			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/create',
+			`backend.cloudbase.dev/static-site-hosting/site/${projectId}/create`,
 			{},
 			{ headers: { owner: session.data.myToken as string } }
 		);

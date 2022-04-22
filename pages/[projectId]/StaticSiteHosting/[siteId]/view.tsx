@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 export default function StaticSiteHosting() {
@@ -13,11 +14,15 @@ export default function StaticSiteHosting() {
 		setFile(event.target.files[0]);
 	};
 
+	const router = useRouter();
+	const { projectId } = router.query;
+	const { siteId } = router.query;
+
 	const fileUploadHandler = async () => {
 		const formData = new FormData();
 		formData.append('myFile', file, file.name);
 		const resp = await axios.post(
-			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/SITEID/',
+			`backend.cloudbase.dev/static-site-hosting/site/${projectId}/${siteId}/`,
 			formData,
 			{ headers: { owner: session.data.myToken as string } }
 		);
@@ -26,7 +31,7 @@ export default function StaticSiteHosting() {
 
 	const deployHandler = async () => {
 		const resp = await axios.post(
-			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/SITEID/deploy',
+			`backend.cloudbase.dev/static-site-hosting/site/${projectId}/${siteId}/deploy`,
 			{},
 			{ headers: { owner: session.data.myToken as string } }
 		);
