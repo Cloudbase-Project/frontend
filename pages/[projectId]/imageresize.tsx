@@ -1,6 +1,10 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 export default function ImageResize() {
+	const router = useRouter();
+	const { projectId } = router.query;
+
 	return (
 		<div>
 			<div className='mt-24  container mx-auto'>
@@ -34,7 +38,9 @@ export default function ImageResize() {
 					</div>
 					<div className='flex justify-center'>
 						<code className=' my-4  text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/image-resize/config/resize
+							{/* http://my-project-1293812300219.cloudbase.dev/image-resize/config/resize */}
+							http://backend.cloudbase.dev/image-resize/config/resize/
+							{projectId}/
 						</code>
 					</div>
 					<div className='text-2xl my-6'>Configure S3</div>

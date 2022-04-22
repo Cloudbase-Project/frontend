@@ -1,7 +1,11 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import Toggle from '../../src/components/Toggle';
 
 export default function authentication() {
+	const router = useRouter();
+	const { projectId } = router.query;
+
 	return (
 		<div>
 			<div className='mt-24  container mx-auto'>
@@ -30,14 +34,18 @@ export default function authentication() {
 					</div>
 					<div className='flex justify-center'>
 						<code className=' my-4  text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/auth/register
+							{/* http://my-project-1293812300219.cloudbase.dev/auth/register */}
+							http://backend.cloudbase.dev/auth/auth/{projectId}
+							/register
 						</code>
 					</div>
 					<div className='text-base text-slate-600 m-2 '>Login</div>
 
 					<div className='flex justify-center'>
 						<code className=' my-4  text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/auth/login
+							{/* http://my-project-1293812300219.cloudbase.dev/auth/login */}
+							http://backend.cloudbase.dev/auth/auth/{projectId}
+							/Login
 						</code>
 					</div>
 					<Toggle link='#' name='Login with Google' />
@@ -47,7 +55,9 @@ export default function authentication() {
 					</div>
 					<div className='flex justify-center'>
 						<code className=' my-4  text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/auth/google
+							{/* http://my-project-1293812300219.cloudbase.dev/auth/google */}
+							http://backend.cloudbase.dev/auth/auth/{projectId}
+							/googleLogin
 						</code>
 					</div>
 					<div className='text-base text-slate-600 m-2 '>
@@ -78,7 +88,9 @@ export default function authentication() {
 					</div>
 					<div className='flex justify-center'>
 						<code className=' my-4 text-center border rounded-lg bg-slate-100 w-full overflow-hidden p-5'>
-							http://my-project-1293812300219.cloudbase.dev/auth/facebook
+							{/* http://my-project-1293812300219.cloudbase.dev/auth/facebook */}
+							http://backend.cloudbase.dev/auth/auth/{projectId}
+							/facebookLogin
 						</code>
 					</div>
 					<div className='text-base text-slate-600 m-2 '>
