@@ -1,7 +1,29 @@
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 
 export default function serverless() {
+	const router = useRouter();
+	const { projectId } = router.query;
+
+	const session = useSession();
+
+	const [functions, setFunctions] = useState([]);
+
+	useEffect(() => {
+		const getFunctions = async () => {
+			const resp = await axios.get(
+				`backend.cloudbase.dev/serverless/functions/${projectId}`,
+				{ headers: { owner: session.data.myToken as string } }
+			);
+			let data = JSON.parse(resp.data);
+			setFunctions(data);
+		};
+		getFunctions();
+	}, []);
+
 	return (
 		<div>
 			<div className='mt-24  container mx-auto'>
@@ -21,7 +43,23 @@ export default function serverless() {
 				<h1 className='text-3xl text-center font-normal leading-normal mt-0 mb-2 text-blueGray-800'>
 					Functions
 				</h1>
-
+				{functions.map((f) => {
+					return (
+						<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
+							<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
+								{f.id}
+							</div>
+							<Link
+								href={`/${projectId}/serverless/${f.id}/view`}>
+								<button
+									className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
+									type='button'>
+									View
+								</button>
+							</Link>
+						</div>
+					);
+				})}
 				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
 					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
 						Hello world Function
@@ -33,56 +71,6 @@ export default function serverless() {
 							View
 						</button>
 					</Link>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						Hello world Function
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						Hello world Function
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						Hello world Function
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						Hello world Function
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						Hello world Function
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
 				</div>
 			</div>
 		</div>
