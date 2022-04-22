@@ -1,7 +1,22 @@
 import Editor from '@monaco-editor/react';
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Logs() {
+	const [logs, setLogs] = useState([]);
+
+	useEffect(() => {
+		const events = new EventSource(
+			'backend.cloudbase.dev/serverless/function/FUNCTIONID/logs'
+		);
+
+		events.onmessage = (e) => {
+			console.log('d : ', e);
+			setLogs([...logs, e.data]);
+		};
+	}, []);
+
 	return (
 		<div>
 			<div className='mt-24  container mx-auto'>
@@ -23,6 +38,7 @@ export default function Logs() {
                 '>
 						<Editor
 							height='500px'
+							// value={logs.join('\n')} TODO:
 							width='100%'
 							defaultLanguage=''
 							defaultValue={[
