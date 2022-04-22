@@ -37,8 +37,12 @@ export default function Edit() {
 				/>
 				<Toggle link='/asd/serverless' name='Serverless' />
 				<Toggle link='/asd/email' name='Email Service' />
-				<Toggle link='asd/deeplink' name='Deep Link Generation' />
-				<Toggle link='asd/imageresize' name='Cloudbase Image Resize' />
+				<Toggle link='/asd/deeplink' name='Deep Link Generation' />
+				<Toggle link='/asd/imageresize' name='Cloudbase Image Resize' />
+				<Toggle
+					link='asd/staticsitehosting'
+					name='Cloudbase  Static Site Hosting'
+				/>
 			</div>
 		</div>
 	);

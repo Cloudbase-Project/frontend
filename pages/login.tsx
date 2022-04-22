@@ -104,7 +104,7 @@ export default function Login() {
 								const signin = await signIn('credentials', {
 									email: email,
 									password: password,
-									// callbackUrl: "http://localhost:3000",
+									callbackUrl: 'http://cloudbase.dev',
 									redirect: false,
 								});
 
