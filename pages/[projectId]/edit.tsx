@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import Toggle from '../../src/components/Toggle';
 
 interface ProjectDetails {
@@ -18,6 +19,25 @@ export default function Edit() {
 		],
 	});
 
+	// useEffect(() => {
+	// 	const getProjects = async () => {
+	// 		const resp = await axios.get('backend.cloudbase.dev/main/user', {
+	// 			headers: { Authorization: 'TOKEN' },
+	// 		});
+	// 		// TODO: set the projectlist
+	// 		console.log('RESP : ', resp);
+	// 	};
+	// 	getProjects();
+	// }, []);
+
+	const toggleService = async (service: string) => {
+		console.log('servie name : ', service);
+		const resp = await axios.post(
+			`backend.cloudbase.dev/main/user/projects/PROJECTID/services/${service}/toggle`
+		);
+		console.log('resp : ', resp);
+	};
+
 	return (
 		<div className='mt-24  container mx-auto'>
 			<h1 className='text-6xl text-center font-normal leading-normal mt-0 mb-2 text-blueGray-800'>
@@ -32,14 +52,32 @@ export default function Edit() {
 			</div>
 			<div className='mx-64 mt-12 '>
 				<Toggle
+					action={() => toggleService('AUTHENTICATION')}
 					link='/asd/authentication/'
 					name='Cloudbase Authentication'
 				/>
-				<Toggle link='/asd/serverless' name='Serverless' />
-				<Toggle link='/asd/email' name='Email Service' />
-				<Toggle link='/asd/deeplink' name='Deep Link Generation' />
-				<Toggle link='/asd/imageresize' name='Cloudbase Image Resize' />
 				<Toggle
+					action={() => toggleService('SERVERLESS')}
+					link='/asd/serverless'
+					name='Serverless'
+				/>
+				<Toggle
+					action={() => toggleService('EMAIL')}
+					link='/asd/email'
+					name='Email Service'
+				/>
+				<Toggle
+					action={() => toggleService('DEEP_LINK_GENERATION')}
+					link='/asd/deeplink'
+					name='Deep Link Generation'
+				/>
+				<Toggle
+					action={() => toggleService('IMAGE_RESIZE')}
+					link='/asd/imageresize'
+					name='Cloudbase Image Resize'
+				/>
+				<Toggle
+					action={() => toggleService('STATIC_SITE_HOSTING')}
 					link='/asd/StaticSiteHosting'
 					name='Cloudbase  Static Site Hosting'
 				/>

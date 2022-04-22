@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 interface Props {
 	name: string;
 	link: string;
+	action: () => Promise<any>;
 }
 
 export default function Toggle(props: Props) {
@@ -30,7 +31,10 @@ export default function Toggle(props: Props) {
 								type='checkbox'
 								id='toggle'
 								className='sr-only'
-								onChange={(e) => setEnabled(e.target.checked)}
+								onChange={async (e) => {
+									await props.action();
+									setEnabled(e.target.checked);
+								}}
 							/>
 							<div className='block bg-gray-600 w-14 h-8 rounded-full'></div>
 							<div className='dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition'></div>
