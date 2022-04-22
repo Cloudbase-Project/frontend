@@ -57,16 +57,7 @@ export default function register() {
 	// render() {
 	return (
 		<div>
-			<header className='text-gray-600 body-font'>
-				<div className='container mx-auto  flex-wrap p-5 flex-col md:flex-row items-center hidden md:flex'>
-					<Link href='/'>
-						<img
-							src='/Transcend.png'
-							className='h-11 sm:h-12 md:h-14 lg:h-16 xl:h-14  rounded-md mx-2 cursor-pointer'
-						/>
-					</Link>
-				</div>
-			</header>
+			<header className='text-gray-600 body-font'></header>
 			<section className='text-gray-600 body-font'>
 				<div className='container px-5 py-24 mx-auto flex flex-wrap items-center'>
 					<div className='lg:w-3/5  md:pr-16 lg:pr-0 pr-0   mb-10  pb-2 border-b sm:mx-auto md:text-center lg:text-left lg:border-r lg:border-b-0'>
@@ -92,7 +83,7 @@ export default function register() {
 					</div>
 					<div className='lg:w-2/6 md:w-9/12 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-2 md:mt-0 md:mx-auto shadow-xl shadow-gray-500'>
 						<h2 className='text-gray-900 text-xl font-bold title-font mb-5 mx-auto'>
-							Create your Transcend Account
+							Create your Cloudbase Account
 						</h2>
 						<div className='relative mb-4'>
 							<label
