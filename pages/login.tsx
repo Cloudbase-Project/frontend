@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { signIn, signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-// import axios from '../axios-config';
 
 export default function Login() {
 	const { data: session, status } = useSession();
@@ -118,7 +117,7 @@ export default function Login() {
 						<div
 							onClick={() =>
 								signIn('google', {
-									callbackUrl: 'http://localhost:3000',
+									callbackUrl: 'http://cloudbase.dev',
 								})
 							}
 							className='google-btn w-full flex flex-wrap  cursor-pointer border-2 border-zinc-200 shadow-sm shadow-gray-400 rounded-md py-2 justify-center mt-2'>
