@@ -1,13 +1,18 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 
 export default function StaticSiteHosting() {
+	const session = useSession();
+
 	const [sites, setSites] = useState([]);
 
 	const createNewSiteHandler = async () => {
 		const resp = await axios.post(
-			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/create'
+			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/create',
+			{},
+			{ headers: { owner: session.data.myToken as string } }
 		);
 		// TODO: fix this and set state
 	};

@@ -1,8 +1,11 @@
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 
 export default function StaticSiteHosting() {
 	const [file, setFile] = useState(null);
+	const session = useSession();
+
 	const onFileChangeHandler = (
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
@@ -15,14 +18,17 @@ export default function StaticSiteHosting() {
 		formData.append('myFile', file, file.name);
 		const resp = await axios.post(
 			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/SITEID/',
-			formData
+			formData,
+			{ headers: { owner: session.data.myToken as string } }
 		);
 		console.log('resp : ', resp);
 	};
 
 	const deployHandler = async () => {
 		const resp = await axios.post(
-			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/SITEID/deploy'
+			'backend.cloudbase.dev/static-site-hosting/site/PROJECTID/SITEID/deploy',
+			{},
+			{ headers: { owner: session.data.myToken as string } }
 		);
 		console.log('respr : ', resp);
 	};

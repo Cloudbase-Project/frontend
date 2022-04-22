@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import ProjectItem from '../src/components/ProjectItem';
 
@@ -10,6 +11,8 @@ interface Project {
 type Projects = Project[];
 
 export default function projects() {
+	const session = useSession();
+
 	const [projects, setProjects] = useState<Projects>([
 		{ id: 'Asd1', name: 'first project' },
 		{ id: 'Asd2', name: 'second project' },
@@ -23,10 +26,21 @@ export default function projects() {
 		const resp = await axios.post(
 			'backend.cloudbase.dev/main/user/projects',
 			{ name: 'first project' },
-			{ headers: { authorization: 'token' } }
+			{ headers: { authorization: session.data.myToken as string } }
 		);
 		console.log('RESP : ', resp);
 	};
+
+	// useEffect(() => {
+	// 	const getProjects = async () => {
+	// 		const resp = await axios.get('backend.cloudbase.dev/main/user', {
+	// 			headers: { Authorization: session.data.myToken as string },
+	// 		});
+	// 		// TODO: set the projectlist
+	// 		console.log('RESP : ', resp);
+	// 	};
+	// 	getProjects();
+	// }, []);
 
 	return (
 		<div className='mt-24  container mx-auto'>

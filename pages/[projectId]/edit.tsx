@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import Toggle from '../../src/components/Toggle';
 
@@ -9,6 +10,8 @@ interface ProjectDetails {
 }
 
 export default function Edit() {
+	const session = useSession();
+
 	const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
 		name: 'Project Name',
 		id: 'Asd1',
@@ -19,21 +22,21 @@ export default function Edit() {
 		],
 	});
 
-	// useEffect(() => {
-	// 	const getProjects = async () => {
-	// 		const resp = await axios.get('backend.cloudbase.dev/main/user', {
-	// 			headers: { Authorization: 'TOKEN' },
-	// 		});
-	// 		// TODO: set the projectlist
-	// 		console.log('RESP : ', resp);
-	// 	};
-	// 	getProjects();
-	// }, []);
+	useEffect(() => {
+		const getProject = async () => {
+			const resp = await axios.get(
+				'backend.cloudbase.dev/main/user/projects/PROJECTID',
+				{ headers: { authorization: session.data.myToken as string } }
+			);
+		};
+	});
 
 	const toggleService = async (service: string) => {
 		console.log('servie name : ', service);
 		const resp = await axios.post(
-			`backend.cloudbase.dev/main/user/projects/PROJECTID/services/${service}/toggle`
+			`backend.cloudbase.dev/main/user/projects/PROJECTID/services/${service}/toggle`,
+			{},
+			{ headers: { authorization: session.data.myToken as string } }
 		);
 		console.log('resp : ', resp);
 	};
