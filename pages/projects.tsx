@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProjectItem from '../src/components/ProjectItem';
 
 interface Project {
 	name: string;
-	id: string;
+	_id: string;
 }
 
 type Projects = Project[];
@@ -13,34 +13,37 @@ type Projects = Project[];
 export default function projects() {
 	const session = useSession();
 
-	const [projects, setProjects] = useState<Projects>([
-		{ id: 'Asd1', name: 'first project' },
-		{ id: 'Asd2', name: 'second project' },
-		{ id: 'Asd3', name: 'other  project' },
-		{ id: 'Asd3', name: 'other  project' },
-		{ id: 'Asd3', name: 'other  project' },
-		{ id: 'Asd3', name: 'other  project' },
-	]);
+	// const [projects, setProjects] = useState<Projects>([
+	// 	{ id: 'Asd1', name: 'first project' },
+	// 	{ id: 'Asd2', name: 'second project' },
+	// 	{ id: 'Asd3', name: 'other  project' },
+	// 	{ id: 'Asd3', name: 'other  project' },
+	// 	{ id: 'Asd3', name: 'other  project' },
+	// 	{ id: 'Asd3', name: 'other  project' },
+	// ]);
+	const [projects, setProjects] = useState<Projects>([]);
 
 	const createProjectHandler = async () => {
 		const resp = await axios.post(
 			'backend.cloudbase.dev/main/user/projects',
-			{ name: 'first project' },
+			{ name: 'My Project' },
 			{ headers: { authorization: session.data.myToken as string } }
 		);
+		setProjects(resp.data.projects);
 		console.log('RESP : ', resp);
 	};
 
-	// useEffect(() => {
-	// 	const getProjects = async () => {
-	// 		const resp = await axios.get('backend.cloudbase.dev/main/user', {
-	// 			headers: { Authorization: session.data.myToken as string },
-	// 		});
-	// 		// TODO: set the projectlist
-	// 		console.log('RESP : ', resp);
-	// 	};
-	// 	getProjects();
-	// }, []);
+	useEffect(() => {
+		const getProjects = async () => {
+			const resp = await axios.get('backend.cloudbase.dev/main/user', {
+				headers: { Authorization: session.data.myToken as string },
+			});
+			// TODO: set the projectlist
+			setProjects(resp.data.projects);
+			console.log('RESP : ', resp);
+		};
+		getProjects();
+	}, []);
 
 	return (
 		<div className='mt-24  container mx-auto'>
@@ -61,7 +64,7 @@ export default function projects() {
 				{projects.length >= 0 && (
 					<div className='mt-10  '>
 						{projects.map((project) => (
-							<ProjectItem name={project.name} id={project.id} />
+							<ProjectItem name={project.name} id={project._id} />
 						))}
 					</div>
 				)}

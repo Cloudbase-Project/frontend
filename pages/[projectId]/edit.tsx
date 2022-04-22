@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Toggle from '../../src/components/Toggle';
 
@@ -11,6 +12,7 @@ interface ProjectDetails {
 
 export default function Edit() {
 	const session = useSession();
+	const router = useRouter();
 
 	const [projectDetails, setProjectDetails] = useState<ProjectDetails>({
 		name: 'Project Name',
@@ -22,22 +24,39 @@ export default function Edit() {
 		],
 	});
 
+	const [services, setServices] = useState([]);
+	const { projectId } = router.query;
+
 	useEffect(() => {
 		const getProject = async () => {
 			const resp = await axios.get(
-				'backend.cloudbase.dev/main/user/projects/PROJECTID',
+				`backend.cloudbase.dev/main/user/projects/${projectId}`,
 				{ headers: { authorization: session.data.myToken as string } }
 			);
+
+			setProjectDetails(resp.data);
+			let enabledServices = [];
+			for (const service of resp.data.services) {
+				if (service.enabled) enabledServices.push(service.name);
+			}
+			setServices(enabledServices);
+			console.log('resp : ', resp);
 		};
-	});
+	}, []);
 
 	const toggleService = async (service: string) => {
 		console.log('servie name : ', service);
 		const resp = await axios.post(
-			`backend.cloudbase.dev/main/user/projects/PROJECTID/services/${service}/toggle`,
+			`backend.cloudbase.dev/main/user/projects/${projectId}/services/${service}/toggle`,
 			{},
 			{ headers: { authorization: session.data.myToken as string } }
 		);
+		setProjectDetails(resp.data);
+		let enabledServices = [];
+		for (const service of resp.data.services) {
+			if (service.enabled) enabledServices.push(service.name);
+		}
+		setServices(enabledServices);
 		console.log('resp : ', resp);
 	};
 
@@ -55,31 +74,37 @@ export default function Edit() {
 			</div>
 			<div className='mx-64 mt-12 '>
 				<Toggle
+					enabled={services.includes('AUTHENTICATION')}
 					action={() => toggleService('AUTHENTICATION')}
 					link='/asd/authentication/'
 					name='Cloudbase Authentication'
 				/>
 				<Toggle
+					enabled={services.includes('SERVERLESS')}
 					action={() => toggleService('SERVERLESS')}
 					link='/asd/serverless'
 					name='Serverless'
 				/>
 				<Toggle
+					enabled={services.includes('EMAIL')}
 					action={() => toggleService('EMAIL')}
 					link='/asd/email'
 					name='Email Service'
 				/>
 				<Toggle
+					enabled={services.includes('DEEP_LINK_GENERATION')}
 					action={() => toggleService('DEEP_LINK_GENERATION')}
 					link='/asd/deeplink'
 					name='Deep Link Generation'
 				/>
 				<Toggle
+					enabled={services.includes('IMAGE_RESIZE')}
 					action={() => toggleService('IMAGE_RESIZE')}
 					link='/asd/imageresize'
 					name='Cloudbase Image Resize'
 				/>
 				<Toggle
+					enabled={services.includes('STATIC_SITE_HOSTING')}
 					action={() => toggleService('STATIC_SITE_HOSTING')}
 					link='/asd/StaticSiteHosting'
 					name='Cloudbase  Static Site Hosting'

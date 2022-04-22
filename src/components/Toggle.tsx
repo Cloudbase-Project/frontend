@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 
 interface Props {
 	name: string;
+	enabled?: boolean;
 	link: string;
-	action: () => Promise<any>;
+	action?: () => Promise<any>;
 }
 
 export default function Toggle(props: Props) {
@@ -19,7 +20,7 @@ export default function Toggle(props: Props) {
 						<span
 							className={`ml-3 cursor-pointer text-gray-700 font-bold mx-2 text-2xl ${
 								// enabled && 'text-brand-green'
-								enabled && 'text-green-600'
+								(props.enabled || enabled) && 'text-green-600'
 							} `}>
 							{props.name}
 						</span>
@@ -27,12 +28,14 @@ export default function Toggle(props: Props) {
 					<label className='flex items-center cursor-pointer'>
 						<div className='relative'>
 							<input
-								checked={enabled}
+								checked={props.enabled || enabled}
 								type='checkbox'
 								id='toggle'
 								className='sr-only'
 								onChange={async (e) => {
-									await props.action();
+									if (props.action) {
+										await props.action();
+									}
 									setEnabled(e.target.checked);
 								}}
 							/>
@@ -40,7 +43,9 @@ export default function Toggle(props: Props) {
 							<div className='dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition'></div>
 						</div>
 						<div className='ml-3 text-gray-700 font-medium'>
-							{enabled ? 'Enabled!' : 'Disabled!'}
+							{props.enabled || enabled
+								? 'Enabled!'
+								: 'Disabled!'}
 						</div>
 					</label>
 				</div>
