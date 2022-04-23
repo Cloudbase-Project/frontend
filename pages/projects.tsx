@@ -10,7 +10,7 @@ interface Project {
 
 type Projects = Project[];
 
-export default function projects() {
+export default function Projects() {
 	const session = useSession();
 
 	// const [projects, setProjects] = useState<Projects>([
@@ -25,7 +25,7 @@ export default function projects() {
 
 	const createProjectHandler = async () => {
 		const resp = await axios.post(
-			'backend.cloudbase.dev/main/user/projects',
+			'/backend/main/user/projects',
 			{ name: 'My Project' },
 			{ headers: { authorization: session.data.myToken as string } }
 		);
@@ -35,7 +35,7 @@ export default function projects() {
 
 	useEffect(() => {
 		const getProjects = async () => {
-			const resp = await axios.get('backend.cloudbase.dev/main/user', {
+			const resp = await axios.get('/backend/main/user', {
 				headers: { Authorization: session.data.myToken as string },
 			});
 			// TODO: set the projectlist
@@ -64,7 +64,11 @@ export default function projects() {
 				{projects.length >= 0 && (
 					<div className='mt-10  '>
 						{projects.map((project) => (
-							<ProjectItem name={project.name} id={project._id} />
+							<ProjectItem
+								name={project.name}
+								key={project._id}
+								id={project._id}
+							/>
 						))}
 					</div>
 				)}
