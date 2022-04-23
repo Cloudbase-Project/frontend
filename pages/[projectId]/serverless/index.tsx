@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-export default function serverless() {
+export default function Serverless() {
 	const router = useRouter();
 	const { projectId } = router.query;
 
@@ -15,14 +15,30 @@ export default function serverless() {
 	useEffect(() => {
 		const getFunctions = async () => {
 			const resp = await axios.get(
-				`backend.cloudbase.dev/serverless/functions/${projectId}`,
+				`/backend/serverless/functions/${projectId}`,
 				{ headers: { owner: session.data.myToken as string } }
 			);
-			let data = JSON.parse(resp.data);
-			setFunctions(data);
+			console.log('daatatat : ', resp.data);
+			// let data = JSON.parse(resp.data);
+			setFunctions(resp.data);
 		};
 		getFunctions();
 	}, []);
+
+	const createNewFunctionHandler = async () => {
+		try {
+			const resp = await axios.post(
+				`/backend/serverless/function/${projectId}`,
+				{},
+				{ headers: { owner: session.data.myToken as string } }
+			);
+			console.log('resss : ', resp);
+			setFunctions([...functions, resp.data]);
+		} catch (error) {
+			console.log(error);
+			console.log(error.response);
+		}
+	};
 
 	return (
 		<div>
@@ -34,7 +50,8 @@ export default function serverless() {
 					<h1 className='text-4xl font-normal leading-normal mt-0 mb-2 text-blueGray-800'>
 						Serverless
 					</h1>
-					<button
+					<button // TODO:
+						onClick={createNewFunctionHandler}
 						className='bg-brand-green hover:bg-brand-gray transition duration-300 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear '
 						type='button'>
 						Create new Function
@@ -45,7 +62,9 @@ export default function serverless() {
 				</h1>
 				{functions.map((f) => {
 					return (
-						<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
+						<div
+							key={f.id}
+							className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
 							<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
 								{f.id}
 							</div>
