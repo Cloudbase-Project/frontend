@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -14,12 +14,26 @@ export default function StaticSiteHosting() {
 
 	const createNewSiteHandler = async () => {
 		const resp = await axios.post(
-			`backend.cloudbase.dev/static-site-hosting/site/${projectId}/create`,
+			`/backend/static-site-hosting/site/${projectId}/create`,
 			{},
 			{ headers: { owner: session.data.myToken as string } }
 		);
+		console.log('respsp :', resp);
+		setSites([...sites, resp.data.Site]);
 		// TODO: fix this and set state
 	};
+
+	useEffect(() => {
+		const getSites = async () => {
+			const resp = await axios.get(
+				`/backend/static-site-hosting/sites/${projectId}`,
+				{ headers: { owner: session.data.myToken as string } }
+			);
+			setSites(resp.data);
+			console.log('reso : ', resp);
+		};
+		getSites();
+	}, []);
 
 	return (
 		<div>
@@ -53,28 +67,22 @@ export default function StaticSiteHosting() {
 					Your Sites
 				</h1>
 
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						82a6048d-f373-4999-99eb-761d619af0fb
+				{sites.map((site) => (
+					<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
+						<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
+							{site.id}
+						</div>
+						<Link
+							href={`/${projectId}/StaticSiteHosting/${site.id}/view`}>
+							<button
+								className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
+								type='button'>
+								View
+							</button>
+						</Link>
 					</div>
-					<Link href='/asd/StaticSiteHosting/asndoiasj/view'>
-						<button
-							className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-							type='button'>
-							View
-						</button>
-					</Link>
-				</div>
-				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
-					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
-						aisdoajd-f373-4999-99eb-761d619af0fb
-					</div>
-					<button
-						className='text-brand-green bg-transparent border border-solid border-brand-green hover:bg-brand-green hover:text-white active:bg-teal-600 font-bold uppercase text-xs px-6  rounded outline-none focus:outline-none my-3 mx-14 ease-linear transition-all duration-150'
-						type='button'>
-						View
-					</button>
-				</div>
+				))}
+
 				<div className='flex mx-64 my-4 justify-between border rounded  hover:bg-slate-50 '>
 					<div className=' font-semibold text-xl p-6 cursor-pointer px-10 '>
 						Hello world Function
