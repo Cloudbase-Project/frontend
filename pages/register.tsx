@@ -5,10 +5,12 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { signIn, signOut } from 'next-auth/react';
 
-export default function register() {
+export default function Register() {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	if (status == 'authenticated') {
+		console.log('tokenweqwe : ');
+
 		router.push('/');
 	}
 
@@ -22,20 +24,27 @@ export default function register() {
 		if (name && email && password && confirmPassword) {
 			if (password === confirmPassword) {
 				try {
-					await axios.post(
-						'http://cloudbase-main-svc/auth/register',
-						{
-							name: name,
-							email: email,
-							password: password,
-						}
-					);
-					await signIn('credentials', {
+					// await axios.post(
+					// 	'https://backend.cloudbase.dev/main/auth/register',
+					// 	{
+					// 		name: name,
+					// 		email: email,
+					// 		password: password,
+					// 	}
+					// );
+					let resp = await axios.post('/backend/main/auth/register', {
+						name: name,
 						email: email,
 						password: password,
-						callbackUrl: 'http://cloudbase.dev/',
+					});
+					console.log('resp : ', resp);
+					let x = await signIn('credentials', {
+						email: email,
+						password: password,
+						// callbackUrl: 'https://cloudbase.dev/',
 						redirect: false,
 					});
+					console.log('after login : ', x);
 				} catch (e) {
 					console.log(e.response.data.errors[0].message);
 					setError(e.response.data.errors[0].message);

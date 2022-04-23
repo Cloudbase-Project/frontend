@@ -13,16 +13,19 @@ export default NextAuth({
 		Credentials({
 			name: 'Credentials',
 			authorize: async (credentials) => {
+				console.log('this one?');
 				console.log(credentials);
 				try {
+					console.log('in the try block');
 					// TODO:
 					const user = await axios.post(
-						'http://cloudbase-main-svc/auth/login',
+						'http://cloudbase-main-svc:4000/auth/login',
 						{
 							email: credentials.email,
 							password: credentials.password,
 						}
 					);
+					console.log('HELLO?');
 					console.log('userdataaaa', user);
 
 					if (user) {
@@ -31,6 +34,7 @@ export default NextAuth({
 						return null;
 					}
 				} catch (e) {
+					console.log('water one?', e);
 					console.log(e.response.data.errors[0].message);
 					throw new Error(e.response.data.errors[0].message);
 				}
@@ -40,6 +44,7 @@ export default NextAuth({
 
 	callbacks: {
 		async jwt({ token, account, user }) {
+			console.log('that one?');
 			// console.log('whatever is here : ', token, account);
 			// console.log(user);
 			console.log('efgh', token, account, user);
@@ -54,6 +59,7 @@ export default NextAuth({
 			return token;
 		},
 		async session({ session, token, user }) {
+			console.log('this?');
 			// Send properties to the client, like an access_token from a provider.
 			// console.log('user : ', token);
 			session.myToken = token.myToken;
@@ -64,6 +70,7 @@ export default NextAuth({
 		},
 
 		async signIn({ user, account, profile }) {
+			console.log('me?');
 			if (account.provider === 'google') {
 				const res = await axios.post('/auth/googleLogin', {
 					email: profile.email,

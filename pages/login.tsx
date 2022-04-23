@@ -8,6 +8,7 @@ export default function Login() {
 	const { data: session, status } = useSession();
 	const router = useRouter();
 	if (status == 'authenticated') {
+		console.log('token : ');
 		router.push('/');
 	}
 
