@@ -1,20 +1,79 @@
 import Editor from '@monaco-editor/react';
-import React from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { SSE } from 'sse.js';
 
 export default function Logs() {
 	const [logs, setLogs] = useState([]);
+	const session = useSession();
+	const router = useRouter();
+
+	const latestValue = useRef(logs);
 
 	useEffect(() => {
-		const events = new EventSource(
-			'backend.cloudbase.dev/serverless/function/FUNCTIONID/logs'
+		const { functionId } = router.query;
+
+		console.log(
+			'the url : ',
+			`/backend/serverless/logs/${functionId}/logs`
 		);
 
-		events.onmessage = (e) => {
-			console.log('d : ', e);
-			setLogs([...logs, e.data]);
-		};
+		// const events = new SSE(
+		// 	`/backend/serverless/logs/${functionId}/logs`
+		// 	// { headers: { owner: session.data.myToken as string } }
+		// );
+
+		const x = new EventSource(
+			`/backend/serverless/logs/${functionId}/logs`
+		);
+
+		console.log('x : ', x);
+
+		// x.onopen = (e) => {
+		// 	console.log('onopen : ', e);
+		// };
+
+		// x.onerror = (e) => {
+		// 	console.log('error : ', e);
+		// };
+
+		// x.onmessage = (e) => {
+		// 	console.log('wqwe : ', e.data);
+		// 	setLogs([...logs, e.data]);
+		// 	console.log('qweqwe : ', logs);
+		// };
+
+		// x.onmessage = console.log;
+
+		// console.log('events : ', events);
+
+		x.addEventListener('message', (e) => {
+			console.log('everything : ', e);
+			// setLogs([...latestValue.current, e.data]);
+			setLogs((l) => {
+				return [...l, e.data];
+			});
+			console.log('logs : ', latestValue.current);
+		});
+
+		// events.addEventListener('message', function (e) {
+		// 	// var payload = JSON.parse(e.data);
+		// 	console.log('qweqe : ', e);
+		// 	setLogs([...logs, e.data]);
+		// });
+		// events.stream();
+
+		// events.onmessage = (e) => {
+		// 	console.log('d : ', e);
+		// 	setLogs([...logs, e.data]);
+		// };
+		// events.onerror = (e) => {
+		// 	console.log('erroorr: ', e);
+		// 	events.close();
+		// };
 	}, []);
 
 	return (
@@ -38,7 +97,7 @@ export default function Logs() {
                 '>
 						<Editor
 							height='500px'
-							// value={logs.join('\n')} TODO:
+							value={logs.join('\n')}
 							width='100%'
 							defaultLanguage=''
 							defaultValue={[
