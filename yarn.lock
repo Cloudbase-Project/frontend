@@ -1938,6 +1938,11 @@ source-map-js@^1.0.1, source-map-js@^1.0.2:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
 
+sse.js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/sse.js/-/sse.js-0.5.0.tgz#5508f4c266f912c479777033d4cb27fdfaa7e6e7"
+  integrity sha512-/PqBVEmMICHlpl/8M767G2o6gjN1oWbbZlJ3wxm6BQUO3PRwfL3Ko+Hua+B0KG5VgBIzalOXtezEddIN5svXPA==
+
 state-local@^1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/state-local/-/state-local-1.0.7.tgz#da50211d07f05748d53009bee46307a37db386d5"
