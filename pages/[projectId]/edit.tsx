@@ -30,7 +30,7 @@ export default function Edit() {
 	useEffect(() => {
 		const getProject = async () => {
 			const resp = await axios.get(
-				`backend.cloudbase.dev/main/user/projects/${projectId}`,
+				`/backend/main/user/projects/${projectId}`,
 				{ headers: { authorization: session.data.myToken as string } }
 			);
 
@@ -47,7 +47,7 @@ export default function Edit() {
 	const toggleService = async (service: string) => {
 		console.log('servie name : ', service);
 		const resp = await axios.post(
-			`backend.cloudbase.dev/main/user/projects/${projectId}/services/${service}/toggle`,
+			`/backend/main/user/projects/${projectId}/services/${service}/toggle`,
 			{},
 			{ headers: { authorization: session.data.myToken as string } }
 		);
@@ -76,37 +76,37 @@ export default function Edit() {
 				<Toggle
 					enabled={services.includes('AUTHENTICATION')}
 					action={() => toggleService('AUTHENTICATION')}
-					link='/asd/authentication/'
+					link={`/${projectId}/authentication/`}
 					name='Cloudbase Authentication'
 				/>
 				<Toggle
 					enabled={services.includes('SERVERLESS')}
 					action={() => toggleService('SERVERLESS')}
-					link='/asd/serverless'
+					link={`/${projectId}/serverless`}
 					name='Serverless'
 				/>
 				<Toggle
 					enabled={services.includes('EMAIL')}
 					action={() => toggleService('EMAIL')}
-					link='/asd/email'
+					link={`/${projectId}/email`}
 					name='Email Service'
 				/>
 				<Toggle
 					enabled={services.includes('DEEP_LINK_GENERATION')}
 					action={() => toggleService('DEEP_LINK_GENERATION')}
-					link='/asd/deeplink'
+					link={`/${projectId}/deeplink`}
 					name='Deep Link Generation'
 				/>
 				<Toggle
 					enabled={services.includes('IMAGE_RESIZE')}
 					action={() => toggleService('IMAGE_RESIZE')}
-					link='/asd/imageresize'
+					link={`/${projectId}/imageresize`}
 					name='Cloudbase Image Resize'
 				/>
 				<Toggle
 					enabled={services.includes('STATIC_SITE_HOSTING')}
 					action={() => toggleService('STATIC_SITE_HOSTING')}
-					link='/asd/StaticSiteHosting'
+					link={`/${projectId}/StaticSiteHosting`}
 					name='Cloudbase  Static Site Hosting'
 				/>
 			</div>

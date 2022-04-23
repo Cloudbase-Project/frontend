@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import Toggle from '../../src/components/Toggle';
 
-export default function authentication() {
+export default function Authentication() {
 	const router = useRouter();
 	const { projectId } = router.query;
 
