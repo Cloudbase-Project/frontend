@@ -11,6 +11,8 @@ export default function Navbar(props) {
 
 	const data = useSession();
 
+	console.log('Data: ', data);
+
 	const handleDropdown = () => {
 		if (dropdown) setDropdown(false);
 		if (!dropdown) setDropdown(true);

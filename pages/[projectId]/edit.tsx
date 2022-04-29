@@ -34,14 +34,15 @@ export default function Edit() {
 				{ headers: { authorization: session.data.myToken as string } }
 			);
 
+			console.log('resp : ', resp);
 			setProjectDetails(resp.data);
 			let enabledServices = [];
-			for (const service of resp.data.services) {
+			for (const service of resp.data.projects.services) {
 				if (service.enabled) enabledServices.push(service.name);
 			}
 			setServices(enabledServices);
-			console.log('resp : ', resp);
 		};
+		getProject();
 	}, []);
 
 	const toggleService = async (service: string) => {
