@@ -87,6 +87,18 @@ export default function Edit() {
 					name='Serverless'
 				/>
 				<Toggle
+					enabled={services.includes('STATIC_SITE_HOSTING')}
+					action={() => toggleService('STATIC_SITE_HOSTING')}
+					link={`/${projectId}/StaticSiteHosting`}
+					name='Cloudbase  Static Site Hosting'
+				/>
+				<Toggle
+					enabled={services.includes('IMAGE_RESIZE')}
+					action={() => toggleService('IMAGE_RESIZE')}
+					link={`/${projectId}/imageresize`}
+					name='Cloudbase Image Resize'
+				/>
+				<Toggle
 					enabled={services.includes('EMAIL')}
 					action={() => toggleService('EMAIL')}
 					link={`/${projectId}/email`}
@@ -97,18 +109,6 @@ export default function Edit() {
 					action={() => toggleService('DEEP_LINK_GENERATION')}
 					link={`/${projectId}/deeplink`}
 					name='Deep Link Generation'
-				/>
-				<Toggle
-					enabled={services.includes('IMAGE_RESIZE')}
-					action={() => toggleService('IMAGE_RESIZE')}
-					link={`/${projectId}/imageresize`}
-					name='Cloudbase Image Resize'
-				/>
-				<Toggle
-					enabled={services.includes('STATIC_SITE_HOSTING')}
-					action={() => toggleService('STATIC_SITE_HOSTING')}
-					link={`/${projectId}/StaticSiteHosting`}
-					name='Cloudbase  Static Site Hosting'
 				/>
 			</div>
 		</div>
